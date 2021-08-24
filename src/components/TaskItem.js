@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styleCss from "../styles/style.module.css";
 import Button from "@material-ui/core/Button";
 import { pink } from "@material-ui/core/colors";
 import Checkbox from "@material-ui/core/Checkbox";
 import { withStyles, createTheme, ThemeProvider } from "@material-ui/core";
+import DeleteOutlineOutlinedIcon from "@material-ui/icons/DeleteOutlineOutlined";
+import EditIcon from "@material-ui/icons/Edit";
 
 const styles = () => ({
   eachTask: {
@@ -40,6 +42,16 @@ const pinkBtn = createTheme({
 
 function TaskItem(props) {
   const { data, classes, index, onEdit, onRemove, onComplete } = props;
+  const [width, setWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  });
+
   return (
     <li
       className={`${classes.eachTask} ${
@@ -56,24 +68,36 @@ function TaskItem(props) {
         onClick={onComplete}
         inputProps={{ "aria-label": "secondary checkbox" }}
       />
-      <Button
-        variant="outlined"
-        color="primary"
-        onClick={onEdit}
-        className={styleCss.editBtn}
-      >
-        Edit
-      </Button>
-      <ThemeProvider theme={pinkBtn}>
-        <Button
-          variant="outlined"
-          color="secondary"
-          onClick={onRemove}
-          className={styleCss.removeBtn}
-        >
-          Remove
-        </Button>
-      </ThemeProvider>
+      <>
+        {width < 800 ? (
+          <EditIcon />
+        ) : (
+          <Button
+            variant="outlined"
+            color="primary"
+            onClick={onEdit}
+            className={styleCss.editBtn}
+          >
+            Edit
+          </Button>
+        )}
+      </>
+      <>
+        {width < 800 ? (
+          <DeleteOutlineOutlinedIcon onClick={onRemove} />
+        ) : (
+          <ThemeProvider theme={pinkBtn}>
+            <Button
+              variant="outlined"
+              color="secondary"
+              onClick={onRemove}
+              className={styleCss.removeBtn}
+            >
+              Remove
+            </Button>
+          </ThemeProvider>
+        )}
+      </>
     </li>
   );
 }

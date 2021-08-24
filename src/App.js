@@ -105,7 +105,6 @@ function App(props) {
     setRemovedItem(removedItem);
   };
   const onRemoveYes = (bool) => {
-    console.log(bool);
     typeof bool === "object"
       ? setTaskList(taskList.filter((item) => item.id !== removedItem.id))
       : setTaskList([]);
