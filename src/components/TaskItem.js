@@ -70,7 +70,7 @@ function TaskItem(props) {
       />
       <>
         {width < 800 ? (
-          <EditIcon />
+          <EditIcon onClick={onEdit} />
         ) : (
           <Button
             variant="outlined"
