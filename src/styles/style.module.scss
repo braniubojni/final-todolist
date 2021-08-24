@@ -1,0 +1,193 @@
+$primary: #11998e;
+$secondary: #38ef7d;
+$gray: #9b9b9b;
+$black: #363839;
+$lightgray: #9c9e9f;
+$gray: #bdc1c6;
+$white: #fff;
+$green: #06842c;
+
+@font-face {
+  font-family: system;
+  font-style: normal;
+  font-weight: 300;
+  src: local(".SFNSText-Light"), local(".HelveticaNeueDeskInterface-Light"),
+    local(".LucidaGrandeUI"), local("Ubuntu Light"), local("Segoe UI Light"),
+    local("Roboto-Light"), local("DroidSans"), local("Tahoma");
+}
+
+body {
+  background-color: #d4f1f4;
+  font-weight: 300;
+  font-family: system;
+}
+label {
+  font-size: large;
+}
+
+.mainDiv {
+  display: inline-flex;
+  flex-direction: column;
+  width: 80%;
+  height: 70vh;
+  background-color: #023047;
+  left: 50%;
+  top: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  border-radius: 10px;
+}
+.crTask {
+  display: flex;
+  background-color: #219ebc;
+  padding: 10px;
+  border-radius: 10px;
+}
+.addInput {
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid $gray;
+  outline: 0;
+  font-size: 1.3rem;
+  color: azure;
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+  margin-right: 8px;
+
+  &::placeholder {
+    color: transparent;
+  }
+
+  &:placeholder-shown ~ .form__label {
+    font-size: 1.3rem;
+    cursor: text;
+    top: 20px;
+  }
+}
+.addInput:focus {
+  padding-bottom: 6px;
+  font-weight: 500;
+  border-width: 3px;
+  border-image: linear-gradient(to right, $primary, $secondary);
+  border-image-slice: 1;
+}
+.addBtn {
+  width: 11%;
+  margin-left: 8px;
+  background-color: #75e6da;
+}
+.addBtn:hover {
+  background-color: #d4f1f4;
+}
+.taskList {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0px;
+  height: 50vh;
+  list-style: none;
+  overflow-y: auto;
+  padding: 10px 0px 10px 0px;
+}
+.taskList::-webkit-scrollbar-track {
+  border: 5px solid white;
+  background-color: #b2bec3;
+  border-radius: 10px;
+}
+
+.taskList::-webkit-scrollbar {
+  width: 10px;
+  background-color: #dfe6e9;
+  border-radius: 10px;
+}
+
+.taskList::-webkit-scrollbar-thumb {
+  background-color: #74b9ff;
+  border-radius: 10px;
+}
+.completed__status {
+  display: flex;
+  position: relative;
+  justify-content: space-around;
+  color: whitesmoke;
+  button {
+  }
+  p {
+  }
+}
+
+// search bar
+.searchBar input[type="search"] {
+  width: 15px;
+  padding-left: 10px;
+  color: transparent;
+  cursor: pointer;
+}
+.searchBar input[type="search"]:hover {
+  background-color: #fff;
+}
+.searchBar input[type="search"]:focus {
+  width: 130px;
+  padding-left: 32px;
+  color: #000;
+  background-color: #fff;
+  cursor: auto;
+}
+.searchBar input:-moz-placeholder {
+  color: transparent;
+}
+.searchBar input::-webkit-input-placeholder {
+  color: transparent;
+}
+.searchBar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  input {
+    outline: none;
+  }
+  input[type="search"] {
+    -webkit-appearance: textfield;
+    -webkit-box-sizing: content-box;
+    font-family: inherit;
+    font-size: 100%;
+  }
+  input::-webkit-search-decoration,
+  input::-webkit-search-cancel-button {
+    display: none;
+  }
+
+  input[type="search"] {
+    background: #ededed
+      url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat
+      9px center;
+    border: solid 1px #ccc;
+    padding: 9px 10px 9px 11px;
+
+    -webkit-border-radius: 10em;
+    -moz-border-radius: 10em;
+    border-radius: 10em;
+
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
+  }
+  input[type="search"]:focus {
+    width: 130px;
+    background-color: #fff;
+    border-color: #66cc75;
+
+    -webkit-box-shadow: 0 0 5px rgba(109, 207, 246, 0.5);
+    -moz-box-shadow: 0 0 5px rgba(109, 207, 246, 0.5);
+    box-shadow: 0 0 5px rgba(109, 207, 246, 0.5);
+  }
+
+  input:-moz-placeholder {
+    color: #999;
+  }
+  input::-webkit-input-placeholder {
+    color: #999;
+  }
+}
