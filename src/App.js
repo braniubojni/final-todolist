@@ -30,6 +30,7 @@ function App(props) {
   const [filteredTaskList, setfilteredTaskList] = useState([]);
   const [editedItem, setEditedItem] = useState(null);
   const [removedItem, setRemovedItem] = useState(null);
+  const [width, setWidth] = useState(window.innerWidth);
   const [taskStatus, setRemaining] = useState({ completed: 0, remaining: 0 });
 
   // Effects place
@@ -50,9 +51,19 @@ function App(props) {
 
   useEffect(() => {
     setfilteredTaskList(
-      taskList.filter((item) => item.name.includes(searchValue))
+      taskList.filter((item) =>
+        item.name.toLowerCase().includes(searchValue.toLowerCase())
+      )
     );
   }, [setfilteredTaskList, taskList, searchValue]);
+
+  useEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  });
   // Effects place
 
   const { addBtn } = props.classes;
@@ -151,8 +162,8 @@ function App(props) {
       <ul className={styleCss.taskList}>{renderTaskList()}</ul>
       <div className={styleCss.completed__status}>
         <p>
-          {taskStatus?.completed || 0} COMPLETED / {taskStatus?.remaining || 0}{" "}
-          REMAINING
+          {taskStatus?.completed || 0} COMPLETED {width > 800 ? "/" : <br />}{" "}
+          {taskStatus?.remaining || 0} REMAINING
         </p>
         <Button
           variant="outlined"

@@ -4,7 +4,6 @@
   font-weight: 300;
   src: local(".SFNSText-Light"), local(".HelveticaNeueDeskInterface-Light"), local(".LucidaGrandeUI"), local("Ubuntu Light"), local("Segoe UI Light"), local("Roboto-Light"), local("DroidSans"), local("Tahoma");
 }
-
 body {
   background-color: #d4f1f4;
   font-weight: 300;
@@ -13,31 +12,24 @@ body {
 
 label {
   font-size: large;
+  word-break: break-all;
 }
 
 .mainDiv {
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
   display: inline-flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   width: 80%;
   height: 70vh;
   background-color: #023047;
   left: 50%;
   top: 50%;
   position: absolute;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   padding: 20px;
   border-radius: 10px;
 }
 
 .crTask {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   background-color: #219ebc;
   padding: 10px;
@@ -54,27 +46,28 @@ label {
   color: azure;
   padding: 7px 0;
   background: transparent;
-  -webkit-transition: border-color 0.2s;
   transition: border-color 0.2s;
   margin-right: 8px;
 }
-
-.addInput::-webkit-input-placeholder {
+.addInput::-moz-placeholder {
   color: transparent;
 }
-
 .addInput:-ms-input-placeholder {
   color: transparent;
 }
-
-.addInput::-ms-input-placeholder {
-  color: transparent;
-}
-
 .addInput::placeholder {
   color: transparent;
 }
-
+.addInput:-moz-placeholder-shown ~ .form__label {
+  font-size: 1.3rem;
+  cursor: text;
+  top: 20px;
+}
+.addInput:-ms-input-placeholder ~ .form__label {
+  font-size: 1.3rem;
+  cursor: text;
+  top: 20px;
+}
 .addInput:placeholder-shown ~ .form__label {
   font-size: 1.3rem;
   cursor: text;
@@ -86,7 +79,6 @@ label {
   font-weight: 500;
   border-width: 3px;
   -o-border-image: linear-gradient(to right, #11998e, #38ef7d);
-     border-image: -webkit-gradient(linear, left top, right top, from(#11998e), to(#38ef7d));
      border-image: linear-gradient(to right, #11998e, #38ef7d);
   border-image-slice: 1;
 }
@@ -102,13 +94,8 @@ label {
 }
 
 .taskList {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   margin-top: 0px;
   height: 50vh;
   list-style: none;
@@ -134,27 +121,23 @@ label {
 }
 
 .completed__status {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   position: relative;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  justify-content: space-around;
   color: whitesmoke;
 }
-
-.searchBar input[type="search"] {
+.searchBar input[type=search] {
   width: 15px;
   padding-left: 10px;
   color: transparent;
   cursor: pointer;
 }
 
-.searchBar input[type="search"]:hover {
+.searchBar input[type=search]:hover {
   background-color: #fff;
 }
 
-.searchBar input[type="search"]:focus {
+.searchBar input[type=search]:focus {
   width: 130px;
   padding-left: 32px;
   color: #000;
@@ -175,45 +158,35 @@ label {
   left: 0;
   top: 0;
 }
-
 .searchBar input {
   outline: none;
 }
-
-.searchBar input[type="search"] {
+.searchBar input[type=search] {
   -webkit-appearance: textfield;
   -webkit-box-sizing: content-box;
   font-family: inherit;
   font-size: 100%;
 }
-
 .searchBar input::-webkit-search-decoration,
 .searchBar input::-webkit-search-cancel-button {
   display: none;
 }
-
-.searchBar input[type="search"] {
+.searchBar input[type=search] {
   background: #ededed url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
   border: solid 1px #ccc;
   padding: 9px 10px 9px 11px;
   border-radius: 10em;
-  -webkit-transition: all 0.5s;
   transition: all 0.5s;
 }
-
-.searchBar input[type="search"]:focus {
+.searchBar input[type=search]:focus {
   width: 130px;
   background-color: #fff;
   border-color: #66cc75;
-  -webkit-box-shadow: 0 0 5px rgba(109, 207, 246, 0.5);
   box-shadow: 0 0 5px rgba(109, 207, 246, 0.5);
 }
-
 .searchBar input:-moz-placeholder {
   color: #999;
 }
-
 .searchBar input::-webkit-input-placeholder {
   color: #999;
-}
-/*# sourceMappingURL=style.module.css.map */
+}/*# sourceMappingURL=style.module.css.map */
