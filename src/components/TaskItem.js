@@ -34,6 +34,9 @@ const styles = () => ({
       backgroundColor: "#cccccc",
     },
   },
+  labelTxtDone:{
+    textDecoration: "line-through"
+  }
 });
 
 const pinkBtn = createTheme({
@@ -58,7 +61,7 @@ function TaskItem(props) {
         data.completed ? classes.completedTask : ""
       }`}
     >
-      <label className={classes.labelTxt} onClick={onComplete}>
+      <label className={`${classes.labelTxt} ${data.completed ? classes.labelTxtDone : ""}`} onClick={onComplete}>
         {`${index + 1}) `}
         {data.name}
       </label>
