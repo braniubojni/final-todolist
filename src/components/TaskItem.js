@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import styleCss from "../styles/style.module.css";
 import Button from "@material-ui/core/Button";
 import { pink } from "@material-ui/core/colors";
@@ -34,9 +34,9 @@ const styles = () => ({
       backgroundColor: "#cccccc",
     },
   },
-  labelTxtDone:{
-    textDecoration: "line-through"
-  }
+  labelTxtDone: {
+    textDecoration: "line-through",
+  },
 });
 
 const pinkBtn = createTheme({
@@ -44,7 +44,9 @@ const pinkBtn = createTheme({
 });
 
 function TaskItem(props) {
-  const { data, classes, index, onEdit, onRemove, onComplete } = props;
+  const { data, classes, index, onEdit, onRemove, onComplete, handleEndRef } =
+    props;
+  const endRef = useRef(index);
   const [width, setWidth] = useState(window.innerWidth);
 
   useEffect(() => {
@@ -54,14 +56,22 @@ function TaskItem(props) {
       window.removeEventListener("resize", handleResize);
     };
   });
-
+  useEffect(() => {
+    handleEndRef(endRef);
+  }, [endRef, handleEndRef]);
   return (
     <li
+      ref={endRef}
       className={`${classes.eachTask} ${
         data.completed ? classes.completedTask : ""
       }`}
     >
-      <label className={`${classes.labelTxt} ${data.completed ? classes.labelTxtDone : ""}`} onClick={onComplete}>
+      <label
+        className={`${classes.labelTxt} ${
+          data.completed ? classes.labelTxtDone : ""
+        }`}
+        onClick={onComplete}
+      >
         {`${index + 1}) `}
         {data.name}
       </label>

@@ -1,5 +1,5 @@
 import styleCss from "./styles/style.module.css";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import TaskItem from "./components/TaskItem";
 import EditDialog from "./components/dialogs/EditDialog";
@@ -32,7 +32,6 @@ function App(props) {
   const [removedItem, setRemovedItem] = useState(null);
   const [width, setWidth] = useState(window.innerWidth);
   const [taskStatus, setRemaining] = useState({ completed: 0, remaining: 0 });
-  const endRef = useRef(null);
 
   // Effects place
   useEffect(() => {
@@ -84,8 +83,6 @@ function App(props) {
       };
       setTaskList((prevTaskList) => [...prevTaskList, newTaskItem]);
       setInputValue("");
-      console.log(endRef.current.scrollIntoView(false));
-      endRef.current.scrollIntoView({ behavior: "auto" });
     }
   }
   const onEnterAdd = (evn) => {
@@ -130,8 +127,8 @@ function App(props) {
   const removeAll = () => {
     setRemovedItem(true);
   };
-  const onSearchBlur = () => {
-    setSearchValue("");
+  const handleEndRef = (refer) => {
+    refer.current.scrollIntoView({ behavior: "smooth", block: "end" });
   };
   const renderTaskList = () => {
     return filteredTaskList.map((item, index) => (
@@ -139,6 +136,7 @@ function App(props) {
         key={item.id}
         data={item}
         index={index}
+        handleEndRef={handleEndRef}
         onComplete={() => {
           onComplete(item);
         }}
@@ -150,11 +148,7 @@ function App(props) {
   return (
     <div className={styleCss.mainDiv}>
       <div className={styleCss.searchBar}>
-        <Input
-          onSeachChange={onSeachChange}
-          searchValue={searchValue}
-          onBlur={onSearchBlur}
-        />
+        <Input onSeachChange={onSeachChange} searchValue={searchValue} />
       </div>
       <div className={styleCss.crTask}>
         <input
@@ -169,10 +163,7 @@ function App(props) {
           Add task
         </Button>
       </div>
-      <ul className={styleCss.taskList}>
-        {renderTaskList()}
-        <div ref={endRef} />
-      </ul>
+      <ul className={styleCss.taskList}>{renderTaskList()}</ul>
       <div className={styleCss.completed__status}>
         <p>
           {taskStatus?.completed || 0} COMPLETED {width > 800 ? "/" : <br />}{" "}
