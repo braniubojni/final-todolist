@@ -68,7 +68,7 @@ function App(props) {
 
   const { addBtn } = props.classes;
   const onInputChange = (evn) => setInputValue(evn.target.value);
-  const onSeachChange = (evn) => setSearchValue(evn.target.value);
+  const onSearchChange = (evn) => setSearchValue(evn.target.value);
   function onAdd() {
     const value = inputValue.trim();
     if (value) {
@@ -148,7 +148,7 @@ function App(props) {
   return (
     <div className={styleCss.mainDiv}>
       <div className={styleCss.searchBar}>
-        <Input onSeachChange={onSeachChange} searchValue={searchValue} />
+        <Input onSearchChange={onSearchChange} searchValue={searchValue} />
       </div>
       <div className={styleCss.crTask}>
         <input
