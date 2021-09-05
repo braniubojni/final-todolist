@@ -36,7 +36,7 @@ function App(props) {
   // Effects place
   useEffect(() => {
     let compl = 0;
-    let rem = filteredTaskList.reduce((reducer, item) => {
+    let rem = taskList.reduce((reducer, item) => {
       if (item) {
         if (item.completed) {
           compl += 1;
