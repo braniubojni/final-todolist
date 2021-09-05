@@ -26,7 +26,11 @@ const styles = () => ({
 function App(props) {
   const [inputValue, setInputValue] = useState("");
   const [searchValue, setSearchValue] = useState("");
-  const [taskList, setTaskList] = useState([]);
+  const [taskList, setTaskList] = useState(
+    window.localStorage.getItem("taskList")
+      ? JSON.parse(window.localStorage.getItem("taskList"))
+      : []
+  );
   const [filteredTaskList, setfilteredTaskList] = useState([]);
   const [editedItem, setEditedItem] = useState(null);
   const [removedItem, setRemovedItem] = useState(null);
@@ -64,6 +68,9 @@ function App(props) {
       window.removeEventListener("resize", handleResize);
     };
   });
+  useEffect(() => {
+    window.localStorage.setItem("taskList", JSON.stringify(taskList));
+  }, [taskList]);
   // Effects place
 
   const { addBtn } = props.classes;
@@ -72,7 +79,7 @@ function App(props) {
   function onAdd() {
     const value = inputValue.trim();
     if (value) {
-      const ifExists = filteredTaskList.find((item) => item.name === value);
+      const ifExists = taskList.find((item) => item.name === value);
       if (!!ifExists) {
         return alert("You already have that task in your list");
       }
